@@ -1,6 +1,6 @@
 ﻿<h1>@ViewBag.title</h1>
 
-<form asp-controller="Search" asp-action="Results" asp-route-searchType="@ViewBag.searchType" asp-route-searchTerm="@ViewBag.searchTerm">
+<form action="/Search/Results">
     <h2>Search by:</h2>
 
     <p>
@@ -11,7 +11,7 @@
                        name="searchType"
                        id="@column.Key"
                        value="@column.Key"
-                       checked="@column.Key == 'all''" />
+                       checked="'@column.Key' == '@ViewBag.searchType'" />
                 <label for="@column.Key">@column.Value</label>
             </span>
         }
@@ -41,7 +41,7 @@
              @foreach (KeyValuePair<string, string> job in ViewBag.jobs[i])
               {
                  <tr>
-                     <td>@job.Key</td>
+                     <td>@(char.ToUpper(job.Key[0])+(job.Key.Substring(1)))</td>
                      <td>@job.Value</td>
                   </tr>
               }
