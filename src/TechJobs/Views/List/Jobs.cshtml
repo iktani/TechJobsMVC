@@ -2,6 +2,16 @@
 
 <h3>@ViewBag.jobs.Count Result(s)</h3>
 
-@{ 
-    // TODO #3 - Use the same list display from Views/Search/Index.cshtml 
+@for (int i = 0; i < ViewBag.jobs.Count; i++)
+{
+    <table class="job-listing">
+        @foreach (KeyValuePair<string, string> job in ViewBag.jobs[i])
+        {
+            <tr>
+                <td>@job.Key</td>
+                <td>@job.Value</td>
+            </tr>
+        }
+    </table>
+    <br />
 }
