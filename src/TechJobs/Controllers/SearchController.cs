@@ -30,6 +30,7 @@ namespace TechJobs.Controllers
             ViewBag.jobs = matches;
             ViewBag.columns = ListController.columnChoices;
             ViewBag.searchType = searchType;
+            ViewBag.checkYesOrNo = false;
             return View("Index");
         }
 

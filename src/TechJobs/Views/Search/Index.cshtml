@@ -6,12 +6,20 @@
     <p>
         @foreach (KeyValuePair<string, string> column in ViewBag.columns)
         {
+            @if (column.Key == ViewBag.searchType)
+            {
+                ViewBag.checkYesOrNo = true;
+            }
+            else
+            {
+                ViewBag.checkYesOrNo = false;
+            }
             <span>
                 <input type="radio"
                        name="searchType"
                        id="@column.Key"
                        value="@column.Key"
-                       checked="'@column.Key' == '@ViewBag.searchType'" />
+                       checked="@ViewBag.checkYesOrNo" />
                 <label for="@column.Key">@column.Value</label>
             </span>
         }
@@ -28,26 +36,14 @@
 <hr />
 
 @if (ViewBag.jobs != null)
- {
+{
 
     <h3>@ViewBag.jobs.Count Result(s)</h3>
 
     // TODO #2 - Loop over jobs dictionary and display all job fields
 
-    
-    @for (int i = 0; i < ViewBag.jobs.Count; i++)
-     {
-         <table class="job-listing">
-             @foreach (KeyValuePair<string, string> job in ViewBag.jobs[i])
-              {
-                 <tr>
-                     <td>@(char.ToUpper(job.Key[0])+(job.Key.Substring(1)))</td>
-                     <td>@job.Value</td>
-                  </tr>
-              }
-         </table>
-         <br/>
-     }
- }
+
+    Html.RenderPartial("_ResultsView");
+}
 
 
